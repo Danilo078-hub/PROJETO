@@ -7,7 +7,7 @@ exports.createDonation = async (req, res) => {
     try {
         const { amount } = req.body;
 
-        // Criar a fatura na Iugu
+        
         const response = await sdk.criarFatura({
             ensure_workday_due_date: false,
             items: [
