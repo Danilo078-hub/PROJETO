@@ -14,22 +14,22 @@ exports.createDonation = async (req, res) => {
                 {
                     description: "Doação",
                     quantity: 1,
-                    price_cents: amount * 100, // valor em centavos
+                    price_cents: amount * 100,
                 },
             ],
         });
 
-        // Salvar a doação no banco de dados
+    
         const donation = new Donation({
             amount,
             donor: req.user.userId,
-            iuguInvoiceId: response.data.id, // Salvando o ID da fatura da Iugu
+            iuguInvoiceId: response.data.id, 
         });
         await donation.save();
 
         res.status(201).json({
             message: 'Doação realizada com sucesso',
-            invoice_url: response.data.secure_url, // URL da fatura para pagamento
+            invoice_url: response.data.secure_url,
         });
     } catch (error) {
         res.status(500).json({ error: 'Erro ao processar doação' });
